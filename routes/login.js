@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 // Import Model
 const Customer = require("../models/Customer");
@@ -40,15 +41,20 @@ router.post("/", (req, res) => {
     }
   })
     .then((data) => {
-      return res.send({
+      jwt.sign({ data }, 'secretkey', { expiresIn: '30s' }, (err, token) => {
+        return res.json({
         status: 1,
         name: data.title,
-        message: "Logged In"
+        message: "Logged In",
+        token
+        });
       });
+
     })
     .catch((err) => {
       console.log(err)
     });
+
 
 
 });

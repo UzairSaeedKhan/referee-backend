@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const jwt = require('jsonwebtoken');
 
 
 // Import Model
@@ -10,9 +11,17 @@ const Business = require('../models/Business'
 // @route GET api/customers
 // @desc Get All Customers
 // @access public
-router.get('/', (req, res) => {
-    Customer.find()
-        .then((customers) => res.json(customers))
+router.get('/', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(403)
+        }
+        else {
+            Customer.find()
+                .then((customers) => res.json(customers))
+        }
+    })
+
 })
 
 // @route GET api/customers
@@ -54,5 +63,17 @@ router.delete('/b/:id', (req, res) => {
         .catch(err => res.status(404).json({ success: false }))
 })
 
+function verifyToken(req, res, next) {
+    const bearerHeader = req.headers['authorization'];
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(' ');
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+
+}
 
 module.exports = router
