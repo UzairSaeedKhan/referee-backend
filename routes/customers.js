@@ -45,6 +45,14 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(404).json({ success: false }))
 })
 
+// @route DELETE api/customers
+// @desc Delete Business
+// @access public
+router.delete('/b/:id', (req, res) => {
+    Business.findById(req.params.id)
+        .then(customer => customer.remove().then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }))
+})
 
 
 module.exports = router

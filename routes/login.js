@@ -16,47 +16,40 @@ router.post("/", (req, res) => {
     });
   }
 
-  if (req.body.customer) {
-    Customer.findOne({ email: req.body.email, password: req.body.password }, (err, data) => {
-      if (err) {
-        res.status(400).send({ status: 0, message: err });
-      }
-    })
-      .then((data) => {
-        return res.send({
-          status: 1,
-          name: data.name,
-          message: "Logged In"
-        });
-      })
-      .catch((err) => {
-        res.status(500).send({
-          status: 0,
-          message: "Incorrect Credentials",
-        });
-      });
-  }
 
-  else {
-    Business.findOne({ email: req.body.email, password: req.body.password }, (err, data) => {
-      if (err) {
-        res.status(400).send({ status: 0, message: err });
-      }
-    })
-      .then((data) => {
-        return res.send({
-          status: 1,
-          name: data.title,
-          message: "Logged In"
-        });
-      })
-      .catch((err) => {
-        res.status(500).send({
-          status: 0,
-          message: "Incorrect Credentials",
-        });
+
+  Customer.findOne({ email: req.body.email, password: req.body.password }, (err, data) => {
+    if (err) {
+      res.status(400).send({ status: 0, message: err });
+    }
+  })
+    .then((data) => {
+      return res.send({
+        status: 1,
+        first_name: data.first_name,
+        message: "Logged In"
       });
-  }
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+
+  Business.findOne({ email: req.body.email, password: req.body.password }, (err, data) => {
+    if (err) {
+      res.status(400).send({ status: 0, message: err });
+    }
+  })
+    .then((data) => {
+      return res.send({
+        status: 1,
+        name: data.title,
+        message: "Logged In"
+      });
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+
 
 });
 
