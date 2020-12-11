@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 
 // Add Routes
 const customers = require('./routes/customers')
-const login = require('./routes/login_customer')
+const login = require('./routes/login')
+const signup = require('./routes/signup')
 
 const app = express()
 
@@ -20,6 +21,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use('/api/customers', customers)
 app.use('/user/login', login)
+app.use('/user/signup', signup)
 
 const PORT = process.env.PORT || 5000
 

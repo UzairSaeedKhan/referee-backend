@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const CustomerSchema = new Schema({
-    name: {
+const BusinessSchema = new Schema({
+    title: {
         type: String,
         required: true
     },
@@ -19,11 +19,11 @@ const CustomerSchema = new Schema({
         required: true,
         default: "123"
     },
-    dob: {
-        type: Date,
+    designation: {
+        type: String,
         required: true,
         default: Date.now
     }
 })
 
-module.exports = Customer = mongoose.model('customer', CustomerSchema)
+module.exports = Business = mongoose.model('business', BusinessSchema)

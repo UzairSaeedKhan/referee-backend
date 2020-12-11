@@ -4,6 +4,8 @@ const router = express.Router()
 
 // Import Model
 const Customer = require('../models/Customer')
+const Business = require('../models/Business'
+)
 
 // @route GET api/customers
 // @desc Get All Customers
@@ -11,6 +13,14 @@ const Customer = require('../models/Customer')
 router.get('/', (req, res) => {
     Customer.find()
         .then((customers) => res.json(customers))
+})
+
+// @route GET api/customers
+// @desc Get All Customers
+// @access public
+router.get('/b', (req, res) => {
+    Business.find()
+        .then((business) => res.json(business))
 })
 
 // @route POST api/customers
