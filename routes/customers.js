@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 // Import Model
-const Customer = require('../../models/Customer')
+const Customer = require('../models/Customer')
 
 // @route GET api/customers
 // @desc Get All Customers
@@ -34,5 +34,7 @@ router.delete('/:id', (req, res) => {
         .then(customer => customer.remove().then(() => res.json({ success: true })))
         .catch(err => res.status(404).json({ success: false }))
 })
+
+
 
 module.exports = router
