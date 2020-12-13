@@ -20,7 +20,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected'))
     .catch((err) => console.log(err))
 
-app.use('/api/customers', customers)
+app.use('/customers', customers)
 app.use('/user/login', login)
 app.use('/user/signup', signup)
 app.use('/offer', offer)
