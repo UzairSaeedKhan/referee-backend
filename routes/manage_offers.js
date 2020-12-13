@@ -4,7 +4,7 @@ const router = express.Router();
 // Import Model
 const Offer = require("../models/Offer");
 
-// View Offers
+// VIEW ALL OFFERS
 router.get("/viewAllOffers", (req, res) => {
   Offer.find().then((offer) => res.json(offer));
 });
