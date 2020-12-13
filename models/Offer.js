@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const OfferSchema = new Schema({
     campaign_name: {
         type: String,
-        required: false
+        required: true,
+        unique: true
     },
     headline: {
         type: String,
@@ -15,7 +16,8 @@ const OfferSchema = new Schema({
         default: Date.now
     },
     expiry_date: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     commision_based: {
         type: Boolean,

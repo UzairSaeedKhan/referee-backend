@@ -15,12 +15,12 @@ app.use(express.json());
 const db = require('./config/keys').mongoURI
 
 // Connect Database
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => console.log('Conected'))
     .catch((err) => console.log(err))
 
 app.use('/user/login', login)
-app.use('/offer', offer)
+app.use('/', offer)
 
 const PORT = process.env.PORT || 5000
 
