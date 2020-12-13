@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 
 // Add Routes
 const customers = require('./routes/customers')
-const login = require('./routes/login_customer')
 const offer = require('./routes/manage_offers')
 
 const app = express()
@@ -16,7 +15,7 @@ const db = require('./config/keys').mongoURI
 
 // Connect Database
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-    .then(() => console.log('Conected'))
+    .then(() => console.log('Connected'))
     .catch((err) => console.log(err))
 
 app.use('/user/login', login)
