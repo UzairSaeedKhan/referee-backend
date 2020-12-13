@@ -23,6 +23,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/api/customers', customers)
 app.use('/user/login', login)
 app.use('/user/signup', signup)
+app.use('/offer', offer)
 
 const PORT = process.env.PORT || 5000
 
