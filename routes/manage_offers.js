@@ -62,7 +62,7 @@ router.patch("/:id", verifyToken, (req, res) => {
 router.delete('/id', verifyToken, (req, res) => {
   jwt.verify(req.token, 'secretkey', (err, authData) => {
     if (err) {
-      res.status(404).send({msg : "Invalid JWT."})
+      res.status(404).send({msg : "InvalidJWT."})
     }
     else {
       Offer.findById(req.params.id)
