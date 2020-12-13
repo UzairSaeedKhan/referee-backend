@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import Model
-const Offer = require("../models/Offer");
+const offer = require("../models/Offer");
 
 // VIEW ALL OFFERS
 router.get("/viewAllOffers", (req, res) => {
