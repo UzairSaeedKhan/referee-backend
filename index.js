@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 // Add Routes
 const customers = require('./routes/customers')
+const login = require('./routes/login')
+const signup = require('./routes/signup')
 const offer = require('./routes/manage_offers')
 
 const app = express()
