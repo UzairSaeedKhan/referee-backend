@@ -1,12 +1,17 @@
+const { request } = require("express");
 const express = require("express");
 const router = express.Router();
+const jwt = require('jsonwebtoken')
 
 // Import Model
 const offer = require("../models/Offer");
 
 // VIEW ALL OFFERS
 router.get("/viewAllOffers", (req, res) => {
-  Offer.find().then((offer) => res.json(offer));
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    Offer.find().then((offer) => res.json(offer));
+  })
+  
 });
 
 // ADD OFFERS
@@ -22,7 +27,9 @@ router.post("/addOffer", async (req, res) => {
     description: req.body.description
   });
   try {
-    const new_offer = await addOffer.save();
+    const new_offer = await jwt.verify(req.token, 'secretkey')
+    console.log("NO KUTNA")
+    addOffer.save();
     res.json(new_offer);
   } catch (err) {
     res.json({ message: err });
