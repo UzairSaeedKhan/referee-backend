@@ -41,7 +41,7 @@ router.post("/", (req, res) => {
     }
   })
     .then((data) => {
-      jwt.sign({ data }, 'secretkey', { expiresIn: '30s' }, (err, token) => {
+      jwt.sign({ data }, 'secretkey', { expiresIn: '1h' }, (err, token) => {
         return res.json({
         status: 1,
         name: data.title,
