@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const OfferSchema = new Schema({
+    business_id: {
+        type: String,
+        required: true
+    },
     campaign_name: {
         type: String,
         required: true,

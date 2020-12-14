@@ -11,7 +11,8 @@ const CustomerSchema = new Schema({
         required: true
     },
     username: {
-        type: String
+        type: String,
+        unique: true
     },
     email: {
         type: String,

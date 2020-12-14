@@ -16,8 +16,7 @@ const BusinessSchema = new Schema({
     },
     contact: {
         type: String,
-        required: true,
-        default: "123"
+        required: true
     },
     designation: {
         type: String,
