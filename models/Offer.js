@@ -8,8 +8,7 @@ const OfferSchema = new Schema({
     },
     campaign_name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     headline: {
         type: String,
@@ -23,11 +22,11 @@ const OfferSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    commision_based: {
+    commission_based: {
         type: Boolean,
         required: true
     },
-    commision_value: {
+    commission_value: {
         type: Number,
         required: false
     },
