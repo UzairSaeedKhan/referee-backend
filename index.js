@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 // Add Routes
 const customers = require('./routes/customers')
@@ -12,6 +13,9 @@ const app = express()
 
 // Body Parser
 app.use(express.json());
+
+// cors
+app.use(cors())
 
 const db = require('./config/keys').mongoURI
 

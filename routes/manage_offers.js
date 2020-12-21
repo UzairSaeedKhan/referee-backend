@@ -18,11 +18,24 @@ router.get("/", verifyToken, (req, res) => {
   });
 });
 
+// VIEW ALL OFFERS OF A BUSINESS
+router.get("/find/:id", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretkey", (err, authData) => {
+    if (err) {
+      res.status(404).send({ msg: "InvalidJWT." });
+    } else {
+      Offer.find({business_id:  req.params.id})
+      .then((data) => res.json(data))
+      .catch(err => console.log(err))
+    }
+  })
+})
+
 // ADD OFFERS
 router.post("/", verifyToken, (req, res) => {
   jwt.verify(req.token, "secretkey", (err, authData) => {
     if (err) {
-      res.status(400).send({ err });
+      res.status(400).send({ msg: err });
     } else {
       // CHECK: if offer already exists
         const offerExist = Offer.findOne({campaign_name:req.body.campaign_name}, (err, data) => { 

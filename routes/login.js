@@ -31,6 +31,7 @@ router.post("/", (req, res) => {
       const { error } = logInValidation(req.body);
       if (error) return res.status(400).send(error.details[0].message);
       return res.send({
+        id: _id,
         status: 1,
         first_name: data.first_name,
         message: "Logged In"
@@ -48,6 +49,7 @@ router.post("/", (req, res) => {
     .then((data) => {
       jwt.sign({ data }, 'secretkey', { expiresIn: '1h' }, (err, token) => {
         return res.json({
+        id: data._id,
         status: 1,
         name: data.title,
         message: "Logged In",
